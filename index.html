@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LABAKU — Lapak Barang Kuliah</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <!-- Komponen 1: Navigasi Utama Responsif -->
+    <header class="header-utama">
+      <div class="kontainer header-isi">
+        <a href="#" class="logo">LABAKU</a>
+        <p class="ringkasan-keranjang" aria-live="polite">
+          Daftar Pinjam: <output id="jumlah-keranjang">0</output> barang
+        </p>
+        <button id="tombol-menu" type="button" aria-expanded="false" aria-controls="menu-utama">
+          Menu
+        </button>
+      </div>
+      <nav id="menu-utama" class="nav-utama" aria-label="Menu utama" hidden>
+        <ul class="kontainer">
+          <li><a href="#katalog">Katalog Barang</a></li>
+          <li><a href="#penghitung">Atur Durasi</a></li>
+          <li><a href="#masuk">Akun Mahasiswa</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="kontainer">
+      <!-- Komponen 2: Kartu Katalog Barang Kuliah -->
+      <section id="katalog" class="bagian">
+        <h1>Katalog Perlengkapan Kuliah</h1>
+        <p class="subjudul">Pinjam atau hibah perlengkapan praktikum antar mahasiswa secara gratis.</p>
+
+        <div class="daftar" aria-label="Daftar perlengkapan kuliah">
+          <article class="kartu">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'><rect width='320' height='180' fill='%23e2e8f0'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%231e293b'>Kalkulator Scientific</text></svg>" alt="Kalkulator scientific 240 fungsi warna hitam" width="320" height="180">
+            <h2>Kalkulator Scientific</h2>
+            <p class="kategori">Kategori: Teknik &amp; Matematika</p>
+            <p class="kondisi">Kondisi: Sangat Baik (Hibah)</p>
+            <button type="button" class="tambah" data-nama="Kalkulator Scientific" aria-label="Tambah Kalkulator Scientific ke daftar pinjam">
+              + Tambah ke Daftar
+            </button>
+          </article>
+
+          <article class="kartu">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'><rect width='320' height='180' fill='%23dbeafe'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%231e3a8a'>Arduino Uno Kit</text></svg>" alt="Papan mikrokontroler Arduino Uno beserta kabel jumper" width="320" height="180">
+            <h2>Arduino Uno Starter Kit</h2>
+            <p class="kategori">Kategori: Elektronika &amp; IoT</p>
+            <p class="kondisi">Kondisi: Lengkap (Pinjam)</p>
+            <button type="button" class="tambah" data-nama="Arduino Uno Starter Kit" aria-label="Tambah Arduino Uno Starter Kit ke daftar pinjam">
+              + Tambah ke Daftar
+            </button>
+          </article>
+
+          <article class="kartu">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'><rect width='320' height='180' fill='%23dcfce7'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%2314532d'>Jas Laboratorium</text></svg>" alt="Jas laboratorium putih lengan panjang ukuran L" width="320" height="180">
+            <h2>Jas Laboratorium (Ukuran L)</h2>
+            <p class="kategori">Kategori: Praktikum Kimia &amp; Biologi</p>
+            <p class="kondisi">Kondisi: Bersih Siap Pakai (Pinjam)</p>
+            <button type="button" class="tambah" data-nama="Jas Laboratorium (Ukuran L)" aria-label="Tambah Jas Laboratorium (Ukuran L) ke daftar pinjam">
+              + Tambah ke Daftar
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Komponen 4 & 5: Penghitung Durasi Pinjam & Dialog Konfirmasi -->
+      <section id="penghitung" class="bagian kotak-panel">
+        <h2>Atur Jumlah Hari Peminjaman</h2>
+        <p>Durasi pinjam (hari): <output id="jumlah" aria-live="polite">0</output></p>
+        <div class="grup-tombol">
+          <button id="kurang" type="button" aria-label="Kurangi jumlah hari" disabled>−</button>
+          <button id="tambah" type="button" aria-label="Tambah jumlah hari">+</button>
+          <button id="reset" type="button">Reset</button>
+          <button id="batalkan-pesanan" type="button" class="tombol-bahaya">Batalkan Pengajuan</button>
+        </div>
+        <p id="hasil" class="status-info" role="status"></p>
+      </section>
+
+      <!-- Komponen 3: Form Masuk Akun Kampus Tervalidasi -->
+      <section class="bagian kotak-panel">
+        <h2>Masuk Akun Mahasiswa</h2>
+        <form id="masuk" novalidate>
+          <div class="kolom">
+            <label for="email">Email Kampus</label>
+            <input id="email" name="email" type="email" required autocomplete="email" aria-describedby="galat-email" placeholder="nama@kampus.ac.id">
+            <p id="galat-email" class="galat"></p>
+          </div>
+
+          <div class="kolom">
+            <label for="password">Kata Sandi</label>
+            <input id="password" name="password" type="password" required minlength="8" autocomplete="current-password" aria-describedby="galat-password">
+            <p id="galat-password" class="galat"></p>
+          </div>
+
+          <button type="submit" class="tombol-utama">Masuk ke LABAKU</button>
+        </form>
+        <p id="pesan" class="status-info" role="status"></p>
+      </section>
+    </main>
+
+    <!-- Komponen 5: Dialog Modal Konfirmasi Pembatalan -->
+    <dialog id="konfirmasi" aria-labelledby="judul-dialog">
+      <h2 id="judul-dialog">Batalkan pengajuan barang?</h2>
+      <p>Daftar barang yang telah dipilih akan dikosongkan.</p>
+      <div class="grup-tombol">
+        <button id="tidak" type="button">Tidak</button>
+        <button id="ya" type="button" class="tombol-bahaya">Ya, Batalkan</button>
+      </div>
+    </dialog>
+
+    <footer class="footer-utama">
+      <div class="kontainer">
+        <p>© 2026 LABAKU — Lapak Barang Kuliah. Dibangun dengan prinsip aksesibilitas web.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

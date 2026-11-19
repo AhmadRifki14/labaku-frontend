@@ -1,0 +1,242 @@
+/* Custom properties terpusat untuk warna dan spacing */
+:root {
+  --aksen: #0066cc;
+  --aksen-gelap: #004c99;
+  --latar: #f8fafc;
+  --permukaan: #ffffff;
+  --teks: #0f172a;
+  --teks-sekunder: #475569;
+  --batas: #cbd5e1;
+  --galat: #b91c1c;
+  --sukses: #15803d;
+  --ruang: 16px;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  color: var(--teks);
+  background-color: var(--latar);
+  margin: 0;
+}
+
+.kontainer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--ruang);
+}
+
+/* Gaya fokus keyboard yang jelas tanpa mengganggu klik mouse */
+:focus-visible {
+  outline: 3px solid var(--aksen);
+  outline-offset: 2px;
+}
+
+/* Header & Navigasi */
+.header-utama {
+  background-color: var(--permukaan);
+  border-bottom: 1px solid var(--batas);
+  padding: var(--ruang) 0;
+}
+
+.header-isi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--ruang);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--aksen);
+  text-decoration: none;
+}
+
+.ringkasan-keranjang {
+  margin: 0;
+  font-weight: 600;
+}
+
+.nav-utama ul {
+  list-style: none;
+  padding-top: var(--ruang);
+  padding-bottom: 4px;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ruang);
+}
+
+.nav-utama a {
+  color: var(--teks);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-utama a:hover {
+  color: var(--aksen);
+  text-decoration: underline;
+}
+
+/* Bagian & Katalog */
+.bagian {
+  margin: calc(var(--ruang) * 2) 0;
+}
+
+.subjudul {
+  color: var(--teks-sekunder);
+  margin-top: -8px;
+}
+
+.daftar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--ruang);
+  margin-top: var(--ruang);
+}
+
+.kartu {
+  background-color: var(--permukaan);
+  border: 1px solid var(--batas);
+  border-radius: var(--radius);
+  padding: var(--ruang);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kartu img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.kartu h2 {
+  font-size: 1.125rem;
+  margin: 4px 0 0;
+}
+
+.kategori,
+.kondisi {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--teks-sekunder);
+}
+
+/* Panel & Formulir */
+.kotak-panel {
+  background-color: var(--permukaan);
+  border: 1px solid var(--batas);
+  border-radius: var(--radius);
+  padding: calc(var(--ruang) * 1.5);
+}
+
+.kolom {
+  margin-bottom: var(--ruang);
+}
+
+.kolom:has(input[aria-invalid="true"]) label {
+  color: var(--galat);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+input {
+  font: inherit;
+  padding: 10px 12px;
+  width: 100%;
+  max-width: 360px;
+  border: 1px solid var(--batas);
+  border-radius: 8px;
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--galat);
+}
+
+.galat {
+  color: var(--galat);
+  font-size: 0.9rem;
+  margin: 4px 0 0;
+  min-height: 1.2em;
+}
+
+.status-info {
+  color: var(--sukses);
+  font-weight: 600;
+  margin: 12px 0 0;
+}
+
+/* Tombol */
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--batas);
+  background-color: var(--permukaan);
+  color: var(--teks);
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background-color: #f1f5f9;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tombol-utama {
+  background-color: var(--aksen);
+  color: #ffffff;
+  border-color: var(--aksen);
+}
+
+.tombol-utama:hover:not(:disabled) {
+  background-color: var(--aksen-gelap);
+}
+
+.tombol-bahaya {
+  color: var(--galat);
+  border-color: var(--galat);
+}
+
+.grup-tombol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Dialog Modal */
+dialog {
+  border: 1px solid var(--batas);
+  border-radius: var(--radius);
+  padding: calc(var(--ruang) * 1.5);
+  max-width: 400px;
+}
+
+dialog::backdrop {
+  background-color: rgba(15, 23, 42, 0.5);
+}
+
+/* Footer */
+.footer-utama {
+  border-top: 1px solid var(--batas);
+  padding: var(--ruang) 0;
+  margin-top: calc(var(--ruang) * 3);
+  color: var(--teks-sekunder);
+  font-size: 0.9rem;
+}
