@@ -7,113 +7,193 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <!-- Komponen 1: Navigasi Utama Responsif -->
+    <!-- Header Utama Sesuai Wireframe Figma -->
     <header class="header-utama">
       <div class="kontainer header-isi">
-        <a href="#" class="logo">LABAKU</a>
-        <p class="ringkasan-keranjang" aria-live="polite">
-          Daftar Pinjam: <output id="jumlah-keranjang">0</output> barang
-        </p>
-        <button id="tombol-menu" type="button" aria-expanded="false" aria-controls="menu-utama">
+        <a href="#katalog" class="merek" data-halaman="katalog">
+          <span class="merek-judul">LABAKU</span>
+          <span class="merek-sub">Lapak Barang Kuliah</span>
+        </a>
+
+        <button id="tombol-menu" class="tombol-hamburger" type="button" aria-expanded="false" aria-controls="menu-utama">
           Menu
         </button>
+
+        <nav id="menu-utama" class="nav-utama" aria-label="Menu utama">
+          <ul>
+            <li><a href="#katalog" class="tautan-nav aktif" data-halaman="katalog">Katalog</a></li>
+            <li><a href="#aktivitas" class="tautan-nav" data-halaman="aktivitas">Aktivitas Saya</a></li>
+            <li>
+              <button type="button" class="tombol-gelap tombol-oper-nav" data-halaman="unggah">
+                + Oper Barang
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav id="menu-utama" class="nav-utama" aria-label="Menu utama" hidden>
-        <ul class="kontainer">
-          <li><a href="#katalog">Katalog Barang</a></li>
-          <li><a href="#penghitung">Atur Durasi</a></li>
-          <li><a href="#masuk">Akun Mahasiswa</a></li>
-        </ul>
-      </nav>
     </header>
 
-    <main class="kontainer">
-      <!-- Komponen 2: Kartu Katalog Barang Kuliah -->
-      <section id="katalog" class="bagian">
-        <h1>Katalog Perlengkapan Kuliah</h1>
-        <p class="subjudul">Pinjam atau hibah perlengkapan praktikum antar mahasiswa secara gratis.</p>
-
-        <div class="daftar" aria-label="Daftar perlengkapan kuliah">
-          <article class="kartu">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'><rect width='320' height='180' fill='%23e2e8f0'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%231e293b'>Kalkulator Scientific</text></svg>" alt="Kalkulator scientific 240 fungsi warna hitam" width="320" height="180">
-            <h2>Kalkulator Scientific</h2>
-            <p class="kategori">Kategori: Teknik &amp; Matematika</p>
-            <p class="kondisi">Kondisi: Sangat Baik (Hibah)</p>
-            <button type="button" class="tambah" data-nama="Kalkulator Scientific" aria-label="Tambah Kalkulator Scientific ke daftar pinjam">
-              + Tambah ke Daftar
-            </button>
-          </article>
-
-          <article class="kartu">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'><rect width='320' height='180' fill='%23dbeafe'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%231e3a8a'>Arduino Uno Kit</text></svg>" alt="Papan mikrokontroler Arduino Uno beserta kabel jumper" width="320" height="180">
-            <h2>Arduino Uno Starter Kit</h2>
-            <p class="kategori">Kategori: Elektronika &amp; IoT</p>
-            <p class="kondisi">Kondisi: Lengkap (Pinjam)</p>
-            <button type="button" class="tambah" data-nama="Arduino Uno Starter Kit" aria-label="Tambah Arduino Uno Starter Kit ke daftar pinjam">
-              + Tambah ke Daftar
-            </button>
-          </article>
-
-          <article class="kartu">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'><rect width='320' height='180' fill='%23dcfce7'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%2314532d'>Jas Laboratorium</text></svg>" alt="Jas laboratorium putih lengan panjang ukuran L" width="320" height="180">
-            <h2>Jas Laboratorium (Ukuran L)</h2>
-            <p class="kategori">Kategori: Praktikum Kimia &amp; Biologi</p>
-            <p class="kondisi">Kondisi: Bersih Siap Pakai (Pinjam)</p>
-            <button type="button" class="tambah" data-nama="Jas Laboratorium (Ukuran L)" aria-label="Tambah Jas Laboratorium (Ukuran L) ke daftar pinjam">
-              + Tambah ke Daftar
-            </button>
-          </article>
+    <main class="kontainer konten-utama">
+      <!-- HALAMAN 1: BERANDA / KATALOG -->
+      <section id="halaman-katalog" class="halaman aktif" aria-labelledby="judul-katalog">
+        <div class="kepala-bagian">
+          <h1 id="judul-katalog">Oper &amp; Cari Perlengkapan Kuliah Antar Mahasiswa</h1>
+          <p class="subjudul">Solusi berbagi perangkat praktikum IoT, aksesoris jaringan, modul, dan perlengkapan kos di lingkungan kampus.</p>
         </div>
-      </section>
 
-      <!-- Komponen 4 & 5: Penghitung Durasi Pinjam & Dialog Konfirmasi -->
-      <section id="penghitung" class="bagian kotak-panel">
-        <h2>Atur Jumlah Hari Peminjaman</h2>
-        <p>Durasi pinjam (hari): <output id="jumlah" aria-live="polite">0</output></p>
-        <div class="grup-tombol">
-          <button id="kurang" type="button" aria-label="Kurangi jumlah hari" disabled>−</button>
-          <button id="tambah" type="button" aria-label="Tambah jumlah hari">+</button>
-          <button id="reset" type="button">Reset</button>
-          <button id="batalkan-pesanan" type="button" class="tombol-bahaya">Batalkan Pengajuan</button>
-        </div>
-        <p id="hasil" class="status-info" role="status"></p>
-      </section>
-
-      <!-- Komponen 3: Form Masuk Akun Kampus Tervalidasi -->
-      <section class="bagian kotak-panel">
-        <h2>Masuk Akun Mahasiswa</h2>
-        <form id="masuk" novalidate>
-          <div class="kolom">
-            <label for="email">Email Kampus</label>
-            <input id="email" name="email" type="email" required autocomplete="email" aria-describedby="galat-email" placeholder="nama@kampus.ac.id">
-            <p id="galat-email" class="galat"></p>
-          </div>
-
-          <div class="kolom">
-            <label for="password">Kata Sandi</label>
-            <input id="password" name="password" type="password" required minlength="8" autocomplete="current-password" aria-describedby="galat-password">
-            <p id="galat-password" class="galat"></p>
-          </div>
-
-          <button type="submit" class="tombol-utama">Masuk ke LABAKU</button>
+        <!-- Bar Pencarian -->
+        <form id="form-cari" class="bar-cari" role="search">
+          <label for="input-cari" class="sr-only">Cari perlengkapan kuliah</label>
+          <input id="input-cari" type="search" placeholder="Cari ESP32, crimping tool, modul praktikum...">
+          <button type="submit" class="tombol-cari">Cari</button>
         </form>
-        <p id="pesan" class="status-info" role="status"></p>
+
+        <!-- Filter Kategori -->
+        <div class="grup-kategori" role="group" aria-label="Filter kategori barang">
+          <button type="button" class="chip aktif" data-kategori="Semua">Semua</button>
+          <button type="button" class="chip" data-kategori="Perangkat Keras & IoT">Perangkat Keras &amp; IoT</button>
+          <button type="button" class="chip" data-kategori="Perangkat Keras & Jaringan">Perangkat Keras &amp; Jaringan</button>
+          <button type="button" class="chip" data-kategori="Modul & Catatan">Modul &amp; Catatan</button>
+          <button type="button" class="chip" data-kategori="Perlengkapan Kos">Perlengkapan Kos</button>
+        </div>
+
+        <!-- Grid Kartu Barang -->
+        <div id="daftar-katalog" class="daftar" aria-live="polite"></div>
+      </section>
+
+      <!-- HALAMAN 2: DETAIL BARANG -->
+      <section id="halaman-detail" class="halaman" hidden aria-labelledby="detail-nama">
+        <button type="button" class="tombol-kembali" data-halaman="katalog">
+          ← Kembali ke Katalog
+        </button>
+
+        <div class="tata-detail">
+          <div class="kotak-foto-besar">
+            <img id="detail-foto" src="" alt="" width="480" height="360">
+          </div>
+
+          <div class="info-detail">
+            <div class="baris-lencana">
+              <span id="detail-harga" class="lencana">HIBAH / GRATIS</span>
+              <span id="detail-status" class="lencana">Status: Tersedia</span>
+            </div>
+
+            <h1 id="detail-nama">ESP32 DevKit V1 + Kabel Jumper</h1>
+
+            <div class="kotak-meta-pemilik">
+              <p id="detail-pemilik">Pemilik: Mahasiswa Teknologi Informasi · Sem 5 (Terverifikasi)</p>
+              <p id="detail-lokasi">Titik Temu Disarankan: Lobi Utama Kampus / Depan Lab Komputer</p>
+            </div>
+
+            <div class="deskripsi-detail">
+              <h2>Deskripsi &amp; Kelengkapan:</h2>
+              <p id="detail-deskripsi"></p>
+            </div>
+
+            <button id="tombol-booking" type="button" class="tombol-gelap tombol-penuh">
+              Booking &amp; Hubungi Pemilik
+            </button>
+            <p id="status-booking" class="pesan-status" role="status"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HALAMAN 3: UNGGAH BARANG (OPER / HIBAHKAN) -->
+      <section id="halaman-unggah" class="halaman" hidden aria-labelledby="judul-unggah">
+        <div class="kepala-bagian">
+          <h1 id="judul-unggah">Oper / Hibahkan Barang Kuliah</h1>
+          <p class="subjudul">Isi detail perlengkapan yang sudah tidak terpakai agar bermanfaat bagi mahasiswa lain.</p>
+        </div>
+
+        <form id="form-unggah" class="panel-form" novalidate>
+          <div class="kolom">
+            <label for="unggah-nama">Nama Barang</label>
+            <input id="unggah-nama" name="nama" type="text" required placeholder="Contoh: Kabel LAN Cat6 5 Meter + RJ45" aria-describedby="galat-nama">
+            <p id="galat-nama" class="galat"></p>
+          </div>
+
+          <div class="baris-dua-kolom">
+            <div class="kolom">
+              <label for="unggah-kategori">Kategori Barang</label>
+              <select id="unggah-kategori" name="kategori" required aria-describedby="galat-kategori">
+                <option value="">Pilih kategori (IoT / Jaringan / Modul / Kos)</option>
+                <option value="Perangkat Keras & IoT">Perangkat Keras &amp; IoT</option>
+                <option value="Perangkat Keras & Jaringan">Perangkat Keras &amp; Jaringan</option>
+                <option value="Modul & Catatan">Modul &amp; Catatan</option>
+                <option value="Perlengkapan Kos">Perlengkapan Kos</option>
+              </select>
+              <p id="galat-kategori" class="galat"></p>
+            </div>
+
+            <div class="kolom">
+              <label for="unggah-penawaran">Jenis Penawaran</label>
+              <select id="unggah-penawaran" name="penawaran">
+                <option value="HIBAH / GRATIS">Hibah Gratis / Harga Mahasiswa</option>
+                <option value="Rp. 25.000">Harga Mahasiswa (Rp. 25.000)</option>
+                <option value="Rp. 50.000">Harga Mahasiswa (Rp. 50.000)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="kolom">
+            <label for="unggah-foto">Foto Asli Barang</label>
+            <label for="unggah-foto" class="zona-unggah">
+              <span id="teks-file-foto">+ Klik atau seret foto asli barang ke sini</span>
+              <input id="unggah-foto" type="file" accept="image/*" class="sr-only">
+            </label>
+          </div>
+
+          <div class="kolom">
+            <label for="unggah-kondisi">Kondisi &amp; Kelengkapan</label>
+            <textarea id="unggah-kondisi" name="kondisi" rows="4" required placeholder="Jelaskan kondisi fisik, kelengkapan komponen, dan semester pemakaian..." aria-describedby="galat-kondisi"></textarea>
+            <p id="galat-kondisi" class="galat"></p>
+          </div>
+
+          <div class="kolom">
+            <label for="unggah-lokasi">Rekomendasi Titik Temu di Kampus</label>
+            <input id="unggah-lokasi" name="lokasi" type="text" required placeholder="Contoh: Lobi Utama Kampus / Depan Perpustakaan" aria-describedby="galat-lokasi">
+            <p id="galat-lokasi" class="galat"></p>
+          </div>
+
+          <button type="submit" class="tombol-gelap tombol-penuh">Terbitkan ke Katalog</button>
+          <p id="status-unggah" class="pesan-status" role="status"></p>
+        </form>
+      </section>
+
+      <!-- HALAMAN 4: AKTIVITAS & TRANSAKSI SAYA -->
+      <section id="halaman-aktivitas" class="halaman" hidden aria-labelledby="judul-aktivitas">
+        <div class="kepala-bagian">
+          <h1 id="judul-aktivitas">Aktivitas &amp; Transaksi Saya</h1>
+          <p class="subjudul">Pantau barang yang sedang kamu booking dan kelola barang yang kamu oper ke mahasiswa lain.</p>
+        </div>
+
+        <div class="tab-aktivitas" role="tablist" aria-label="Kategori aktivitas saya">
+          <button id="tab-dibooking" type="button" role="tab" aria-selected="true" class="tombol-tab aktif">
+            Barang Dibooking (<span id="hitung-dibooking">1</span>)
+          </button>
+          <button id="tab-dioper" type="button" role="tab" aria-selected="false" class="tombol-tab">
+            Barang Saya Oper (<span id="hitung-dioper">2</span>)
+          </button>
+        </div>
+
+        <div id="daftar-aktivitas" class="daftar-transaksi" aria-live="polite"></div>
+        <p id="status-aktivitas" class="pesan-status" role="status"></p>
       </section>
     </main>
 
-    <!-- Komponen 5: Dialog Modal Konfirmasi Pembatalan -->
+    <!-- Dialog Modal Konfirmasi Serah Terima / Batal -->
     <dialog id="konfirmasi" aria-labelledby="judul-dialog">
-      <h2 id="judul-dialog">Batalkan pengajuan barang?</h2>
-      <p>Daftar barang yang telah dipilih akan dikosongkan.</p>
-      <div class="grup-tombol">
-        <button id="tidak" type="button">Tidak</button>
-        <button id="ya" type="button" class="tombol-bahaya">Ya, Batalkan</button>
+      <h2 id="judul-dialog">Konfirmasi Penerimaan Barang</h2>
+      <p id="teks-dialog">Pastikan kamu sudah memeriksa kelengkapan barang di titik temu kampus.</p>
+      <div class="grup-tombol-dialog">
+        <button id="tidak" type="button" class="tombol-sekunder">Batal</button>
+        <button id="ya" type="button" class="tombol-gelap">Ya, Barang Diterima</button>
       </div>
     </dialog>
 
     <footer class="footer-utama">
       <div class="kontainer">
-        <p>© 2026 LABAKU — Lapak Barang Kuliah. Dibangun dengan prinsip aksesibilitas web.</p>
+        <p>© 2026 LABAKU — Lapak Barang Kuliah. Solusi berbagi perlengkapan kuliah antar mahasiswa.</p>
       </div>
     </footer>
 
